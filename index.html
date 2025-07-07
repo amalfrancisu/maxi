@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightyear</title>
+    <link rel="icon" type="image/png" href="stars.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#hero">Mission Briefing</a></li>
+                <li><a href="#about">Origin Story</a></li>
+                
+                <li><a href="#skills">Buzz</a></li>
+                <!-- <li><a href="#projects">Starfleet Operations</a></li> -->
+                <li><a href="#contact">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <img src="pngamal.png" alt="Your Space Ranger Photo">
+            <!-- <h1>[Your Name]</h1> -->
+            <p><span class="infinity-phrase">To Infinity and Beyond! </span></p>
+        </section>
+
+        <section id="about" class="about">
+            <div class="about-content">
+                <img src="banner.jpg" alt="My Origin Story">
+                <div class="about-text">
+                    <h2>Origin Story</h2>
+                    <p>Greetings, Star Command! I am Amal Francis, a seasoned Space Ranger, buzzing forth through the vast expanse of Business Management after eons spent in the domain of codes and computing. As a certified go-getter, my motto is, "Reach for the moon because even the stars aren't half bad." And never do I wait for things to happen; I make them happen.</p>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section id="skills" class="skills hidden">
+            <h2>What's this Buzz about?</h2>
+            <div class="skill-grid">
+                <div class="skill">
+                    <img src="4.png" alt="Laser Focus">
+                    <h3>I mean buzziness</h3>
+                    <p>I’m someone who takes ownership seriously and can be counted on when it matters. I enjoy working on things that bring visible, positive change, be it to solve a technical issue or to help the team move forward with clarity and calm.</p>
+                </div>
+                <div class="skill">
+                    <img src="5.png" alt="Strategic Maneuvering">
+                    <h3>That's how we buzz!</h3>
+                    <p>Did indoors or outdoors win the toss? Doesn't really matter because a game of football or cricket with the squad is just as good as a quiet day with a book or some music for me.</p>
+                </div>
+                <div class="skill">
+                    <img src="6.png" alt="Interstellar Communication">
+                    <h3>Buzzing around</h3>
+                    <p>I'm a people's person. I love being around people, whether we’re figuring out a tricky problem or just chatting over chai. I try to listen well, understand where others are coming from, and make space for everyone to feel heard.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="projects" class="projects hidden">
+            <h2>Starfleet Operations</h2>
+            <div class="project-grid">
+                <div class="project-item">
+                    <img src="3.jpg" alt="Project Alpha">
+                    <h3>[Project 1 Name] - Operation [Project 1 Codename]</h3>
+                    <p>A successful mission to [briefly describe Project 1 and its stellar impact]. We achieved [key metrics/achievements] and paved the way for future galactic endeavors.</p>
+                </div>
+                <div class="project-item">
+                    <img src="3.jpg" alt="Project Beta">
+                    <h3>[Project 2 Name] - Expedition [Project 2 Codename]</h3>
+                    <p>An ambitious expedition into [briefly describe Project 2 and its cosmic significance]. This project demonstrated [key learnings/innovations] and expanded our reach across the cosmos.</p>
+                </div>
+            </div>
+        </section> -->
+
+        <section id="contact" class="contact hidden">
+            <h2>Pricing</h2>
+            <p>One Pindi Paratha works ^^</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Not Pixar. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
