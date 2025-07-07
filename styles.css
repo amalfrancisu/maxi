@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    animation: fadeIn 1s ease-in-out;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="%23fff"/><circle cx="30" cy="40" r="1" fill="%23fff"/><circle cx="50" cy="80" r="1" fill="%23fff"/><circle cx="70" cy="20" r="1" fill="%23fff"/><circle cx="90" cy="60" r="1" fill="%23fff"/></svg>');
+    animation: stars 20s linear infinite;
+    position: relative; /* For overlay */
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0,182,123,0.1) 0%, rgba(28,45,74,0.1) 100%);
+    animation: gradientMove 15s ease infinite alternate;
+    z-index: -1; /* Behind content */
+}
+
+body::after { /* Scanline overlay */
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+@keyframes stars {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+header {
+    padding: 20px;
+    border-bottom: 1px solid #1c2d4a;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: transform 0.3s, color 0.3s;
+    display: inline-block;
+}
+
+nav a:hover {
+    transform: translateY(-5px);
+    color: #00b67b;
+}
+
+.hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px; /* Spacing between image and text */
+    padding: 50px 20px;
+    min-height: 400px; /* Ensure enough vertical space */
+}
+
+.hero img {
+    max-width: 30%; /* Made smaller */
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.hero img:hover {
+    transform: scale(1.3); /* Make it bigger, but keep it in flow */
+}
+
+.infinity-phrase {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5em;
+    color: #00b67b;
+    text-shadow: 0 0 10px #00b67b, 0 0 20px #00b67b, 0 0 30px #00b67b;
+    overflow: hidden; /* Ensures the text is hidden until typed */
+    white-space: nowrap; /* Keeps the text on a single line */
+    /* border-right: .15em solid #00b67b; The blinking cursor */
+    /* animation:  */
+        /* typing 4s steps(40, end) forwards, Typing animation */
+        /* blink-caret .75s step-end infinite; Blinking cursor */
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00b67b; }
+}
+
+.subtle-text {
+    font-size: 0.7em; /* Makes it slightly smaller relative to its parent */
+    color: #fff;
+}
+
+.about, .skills, .projects, .contact {
+    padding: 50px 20px;
+    position: relative;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.about:hover, .skills:hover, .projects:hover, .contact:hover {
+    background-color: rgba(0, 182, 123, 0.05); /* Subtle highlight on hover */
+}
+
+.about::after, .skills::after, .projects::after, .contact::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #1c2d4a, transparent);
+    animation: separatorFadeIn 1s ease-out forwards;
+    animation-play-state: paused; /* Paused until scrolled into view */
+}
+
+@keyframes separatorFadeIn {
+    to { opacity: 1; }
+}
+
+.about.show::after, .skills.show::after, .projects.show::after, .contact.show::after {
+    animation-play-state: running;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about-content img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    border-radius: 10px;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.skill-grid, .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill, .project-item {
+    background-color: rgba(28, 45, 74, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill:hover, .project-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(0, 182, 123, 0.5);
+}
+
+.skill img, .project-item img {
+    width: 100%;
+    height: 200px; /* Increased height for skill/project images */
+    object-fit: cover;
+    transition: transform 0.3s;
+    border-radius: 10px;
+}
+
+.skill img:hover, .project-item img:hover {
+    transform: scale(1.05);
+}
+
+h3 {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    transition: color 0.3s, transform 0.3s;
+    text-shadow: 0 0 5px #00b67b, 0 0 10px #00b67b;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    transition: color 0.3s, transform 0.3s;
+    text-shadow: 0 0 5px #00b67b, 0 0 10px #00b67b;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from { text-shadow: 0 0 5px #00b67b, 0 0 10px #00b67b; }
+    to { text-shadow: 0 0 10px #00b67b, 0 0 20px #00b67b; }
+}
+
+h2:hover {
+    color: #00b67b;
+    transform: translateX(0);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #1c2d4a;
+    transition: transform 0.3s ease-in-out;
+}
+
+footer:hover {
+    transform: translateY(-5px);
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.show {
+    opacity: 1;
+}
+
+p {
+    text-align: center;
+}
